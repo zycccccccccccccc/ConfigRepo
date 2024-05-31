@@ -1,0 +1,40 @@
+
+spring:
+  datasource:
+    username: root
+    password: QAZwsx3180
+    url: jdbc:mysql://127.0.0.1:3306/warehouse?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  profiles:
+    active: cache
+auth:
+  token-expire-days: 15
+mybatis-plus:
+  mapper-locations: classpath:mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
+    auto-mapping-behavior: full
+    lazy-loading-enabled: true
+    aggressive-lazy-loading: false
+  type-aliases-package: com.bjtu.user #设置别名a
+ribbon:
+  eager-load:
+    enabled: true #开启饥饿加载提升第一次访问速度
+    clients:
+      - user-service #指定开启服务
+feign:
+  httpclient:
+    enabled: true  # 开启httpClient开关,启动连接池,提升feign连接效率!
+    max-connections: 200  #最大连接数量
+    max-connections-per-route: 50  #单路径最大连接数
+#swagger全局配置
+knife4j:
+  enable: true  #是否开启Swagger
+#  basic:
+#    enable: true  #进入界面是否需要账号密码
+#    username: admin
+#    password: 123456
+
+
